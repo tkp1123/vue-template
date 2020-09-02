@@ -1,0 +1,65 @@
+{
+  "id": "2010339",
+  "name": "vue",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "12679287",
+      "name": "home",
+      "font_class": "sanguohome",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "2304312",
+      "name": "数据统计",
+      "font_class": "shujutongji",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "3212586",
+      "name": "商品",
+      "font_class": "tubiao-qiantai-",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "10423587",
+      "name": "用户",
+      "font_class": "yonghu2",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "12250520",
+      "name": "权限",
+      "font_class": "quanxian",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "13856663",
+      "name": "下单",
+      "font_class": "xiadan",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "14919887",
+      "name": "user",
+      "font_class": "gerenzhongxin",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "15296782",
+      "name": "密 码",
+      "font_class": "mima",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    }
+  ]
+}
