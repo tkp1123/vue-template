@@ -91,13 +91,13 @@
         {
             "id": "8",
             "autoName": "图表",
-            "path": "err",
+            "path": "chart",
             "icon": "iconfont iconzhuzhuangtutubiao",
             "children": [
                 {
                     "id": "8-1",
                     "autoName": "charts图表",
-                    "path": "reports",
+                    "path": "charts",
                     "children": []
                 }
             ]
@@ -105,13 +105,13 @@
         {
             "id": "9",
             "autoName": "ZIP",
-            "path": "err",
+            "path": "zip",
             "icon": "iconfont iconzip",
             "children": [
                 {
                     "id": "9-1",
                     "autoName": "export ZIP",
-                    "path": "reports",
+                    "path": "zips",
                     "children": []
                 }
             ]
@@ -119,13 +119,13 @@
         {
             "id": "10",
             "autoName": "Table",
-            "path": "err",
+            "path": "table",
             "icon": "iconfont iconTable",
             "children": [
                 {
                     "id": "10-1",
                     "autoName": "table 列表",
-                    "path": "reports",
+                    "path": "tables",
                     "children": []
                 }
             ]
@@ -133,19 +133,19 @@
         {
             "id": "11",
             "autoName": "权限",
-            "path": "err",
+            "path": "power",
             "icon": "iconfont iconquanxian1",
             "children": [
                 {
                     "id": "11-1",
                     "autoName": "页面权限",
-                    "path": "reports",
+                    "path": "powerPage",
                     "children": []
                 },
                 {
                     "id": "11-2",
                     "autoName": "角色权限",
-                    "path": "reports",
+                    "path": "powerUser",
                     "children": []
                 }
             ]
@@ -153,13 +153,13 @@
         {
             "id": "12",
             "autoName": "Excel",
-            "path": "err",
+            "path": "excel",
             "icon": "iconfont iconfile-excel",
             "children": [
                 {
                     "id": "12-1",
                     "autoName": "导出 Excel",
-                    "path": "reports",
+                    "path": "exportExcel",
                     "children": []
                 }
             ]
@@ -167,13 +167,13 @@
         {
             "id": "13",
             "autoName": "组件",
-            "path": "err",
+            "path": "assembly",
             "icon": "iconfont iconzujian",
             "children": [
                 {
                     "id": "13-1",
                     "autoName": "小组件列表",
-                    "path": "reports",
+                    "path": "assemblys",
                     "children": []
                 }
             ]
@@ -181,13 +181,13 @@
         {
             "id": "14",
             "autoName": "外链",
-            "path": "err",
+            "path": "outerChain",
             "icon": "iconfont iconcaozuo-wailian"
         },
         {
             "id": "15",
             "autoName": "Form",
-            "path": "err",
+            "path": "form",
             "icon": "iconfont iconform"
         }
     ]

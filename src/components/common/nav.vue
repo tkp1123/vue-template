@@ -72,7 +72,7 @@ export default {
 }
 .iconfont {
   margin-right: 10px;
-  font-size: 25px;
+  font-size: 14px;
 }
 .nav_title {
   color: #ffffff;
