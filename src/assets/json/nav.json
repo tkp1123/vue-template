@@ -1,0 +1,86 @@
+{
+    "menuList": [
+        {
+            "id": 12,
+            "autoName": "首页",
+            "path": "welcome",
+            "icon": "iconfont iconsanguohome"
+        },
+        {
+            "id": 125,
+            "autoName": "用户管理",
+            "path": "users",
+            "icon": "iconfont iconyonghu2",
+            "children": [
+                {
+                    "id": 101,
+                    "autoName": "用户列表",
+                    "path": "users",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": 103,
+            "autoName": "权限管理",
+            "path": "permits",
+            "icon": "iconfont iconquanxian",
+            "children": [
+                {
+                    "id": 102,
+                    "autoName": "角色列表",
+                    "path": "roles",
+                    "children": []
+                },
+                {
+                    "id": 1021,
+                    "autoName": "权限列表",
+                    "path": "permits",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": 101,
+            "autoName": "商品管理",
+            "path": "goods",
+            "icon": "iconfont icontubiao-qiantai-",
+            "children": [
+                {
+                    "id": 103,
+                    "autoName": "商品列表",
+                    "path": "goods",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": 102,
+            "autoName": "订单管理",
+            "path": "orders",
+            "icon": "iconfont iconxiadan",
+            "children": [
+                {
+                    "id": 104,
+                    "autoName": "订单列表",
+                    "path": "orders",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": 145,
+            "autoName": "数据统计",
+            "path": "reports",
+            "icon": "iconfont iconshujutongji",
+            "children": [
+                {
+                    "id": 105,
+                    "autoName": "数据统计",
+                    "path": "reports",
+                    "children": []
+                }
+            ]
+        }
+    ]
+}
