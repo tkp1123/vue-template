@@ -19,7 +19,7 @@ const router = new Router({
   {
     path: '/home',
     name: 'home',
-    //redirect: '/welcome',
+    redirect: '/welcome',
     component: resolve => require(['@/components/common/home'], resolve),
     children: [
       {
@@ -56,6 +56,11 @@ const router = new Router({
         path: '/reports',
         name: 'reports',
         component: resolve => require(['@/components/views/reports/reports'], resolve)
+      },
+      {
+        path: '/err',
+        name: 'err',
+        component: resolve => require(['@/components/views/err-page/err'], resolve)
       },
     ]
   },

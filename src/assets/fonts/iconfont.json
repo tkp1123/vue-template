@@ -6,6 +6,69 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2967034",
+      "name": "操作-外链",
+      "font_class": "caozuo-wailian",
+      "unicode": "e711",
+      "unicode_decimal": 59153
+    },
+    {
+      "icon_id": "7239753",
+      "name": "form",
+      "font_class": "form",
+      "unicode": "e731",
+      "unicode_decimal": 59185
+    },
+    {
+      "icon_id": "13851294",
+      "name": "error-5",
+      "font_class": "error-",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "385312",
+      "name": "ZIP",
+      "font_class": "zip",
+      "unicode": "e6a8",
+      "unicode_decimal": 59048
+    },
+    {
+      "icon_id": "688149",
+      "name": "柱状图 图表",
+      "font_class": "zhuzhuangtutubiao",
+      "unicode": "e7b5",
+      "unicode_decimal": 59317
+    },
+    {
+      "icon_id": "9568083",
+      "name": "Table",
+      "font_class": "Table",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
+      "icon_id": "13173805",
+      "name": "权限",
+      "font_class": "quanxian1",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "13253781",
+      "name": "file-excel",
+      "font_class": "file-excel",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "16399009",
+      "name": "组件",
+      "font_class": "zujian",
+      "unicode": "e85e",
+      "unicode_decimal": 59486
+    },
+    {
       "icon_id": "12679287",
       "name": "home",
       "font_class": "sanguohome",
