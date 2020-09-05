@@ -1,10 +1,5 @@
 <template>
   <div>
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/welcome' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>权限管理</el-breadcrumb-item>
-      <el-breadcrumb-item>权限列表</el-breadcrumb-item>
-    </el-breadcrumb>
     <el-card class="box-card">
       <el-table :data="tableData" border stripe style="width: 100%">
         <el-table-column type="index"></el-table-column>

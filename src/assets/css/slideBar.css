@@ -1,6 +1,6 @@
 .el-scrollbar{
     height: 100%;
-    background-color: #333744;
+    /* background-color: #333744; */
   }
   .el-scrollbar__wrap {
     overflow-x: hidden !important;

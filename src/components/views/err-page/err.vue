@@ -30,11 +30,11 @@ export default {
   transform: translate(-50%, -50%);
   position: absolute;
   top: 40%;
-  left: 50%;
+  left: 55%;
 }
 .wscn-http404 {
   position: relative;
-  width: 1200px;
+  width: 900px;
   padding: 0 50px;
   overflow: hidden;
   .pic-404 {

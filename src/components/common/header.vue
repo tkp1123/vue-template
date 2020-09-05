@@ -1,6 +1,6 @@
 <template>
   <!-- 头部  -->
-  <el-header>
+  <div class="navbar">
     <i
       :class="getCollapse?'el-icon-s-unfold':'el-icon-s-fold'"
       style="padding-left:20px"
@@ -26,7 +26,7 @@
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
-  </el-header>
+  </div>
 </template>
 <script>
 export default {
@@ -93,5 +93,16 @@ export default {
   border-radius: 50%;
   margin: 10px;
   float: right;
+}
+.navbar {
+  // height: 50px;
+  // line-height: 50px;
+  background-color: #373d41;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0;
+  align-items: center;
+  color: #fff;
+  width: 100%;
 }
 </style>

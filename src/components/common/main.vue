@@ -13,7 +13,9 @@ export default {
 </script>
 <style lang="less" scoped>
 .el-main {
-  background-color: #eaedf1;
+  // background-color: #eaedf1;
   min-height: calc(100vh - 60px);
+  position: relative;
+  overflow: hidden;
 }
 </style>

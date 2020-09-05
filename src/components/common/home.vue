@@ -1,15 +1,11 @@
 <template>
-  <el-container class="home-container">
-    <Nav></Nav>
-    <el-container>
-      <el-row class="remain">
-        <el-col :span="24">
-          <Header></Header>
-          <Main></Main>
-        </el-col>
-      </el-row>
-    </el-container>
-  </el-container>
+  <div :class="classObj" class="app-wrapper">
+    <Nav class="sidebar-container"></Nav>
+    <div class="main-container">
+      <Header></Header>
+      <Main></Main>
+    </div>
+  </div>
 </template>
 <script>
 import Nav from '@/components/common/nav'
@@ -23,6 +19,17 @@ export default {
     Main,
     Header,
   },
+  computed: {
+    nav() {
+      return this.$store.state
+    },
+    classObj() {
+      return {
+        hideSidebar: this.nav.isCollapse,
+        openSidebar: !this.nav.isCollapse,
+      }
+    },
+  },
   //store,
   data() {
     return {}
@@ -33,6 +40,17 @@ export default {
 .home-container {
   height: 100%;
 }
+.app-wrapper {
+  // display: flex;
+  height: 100%;
+  width: 100%;
+}
+// .main-container {
+//   min-height: 100%;
+//   width: 100%;
+//   transition: margin-left 0.28s;
+//   position: relative;
+// }
 .remain {
   width: 100%;
 }
