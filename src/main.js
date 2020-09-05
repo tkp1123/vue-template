@@ -7,10 +7,10 @@ import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
 import './assets/css/global.css'
 import './assets/fonts/iconfont.css'
-//import store from './vuex/store'
 import axios from 'axios'
 import { Message } from 'element-ui'
 import store from './store'
+require('../mock')
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false

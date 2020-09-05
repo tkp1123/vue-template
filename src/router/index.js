@@ -62,6 +62,51 @@ const router = new Router({
         name: 'err',
         component: resolve => require(['@/components/views/err-page/err'], resolve)
       },
+      {
+        path: '/charts',
+        name: 'charts',
+        component: resolve => require(['@/components/views/chart/charts'], resolve)
+      },
+      {
+        path: '/zips',
+        name: 'zips',
+        component: resolve => require(['@/components/views/zip/zips'], resolve)
+      },
+      {
+        path: '/tables',
+        name: 'tables',
+        component: resolve => require(['@/components/views/table/tables'], resolve)
+      },
+      {
+        path: '/powerUser',
+        name: 'powerUser',
+        component: resolve => require(['@/components/views/power/powerUser'], resolve)
+      },
+      {
+        path: '/powerPage',
+        name: 'powerPage',
+        component: resolve => require(['@/components/views/power/powerPage'], resolve)
+      },
+      {
+        path: '/exportExcel',
+        name: 'exportExcel',
+        component: resolve => require(['@/components/views/excel/exportExcel'], resolve)
+      },
+      {
+        path: '/myform',
+        name: 'myform',
+        component: resolve => require(['@/components/views/form/form'], resolve)
+      },
+      {
+        path: '/assemblys',
+        name: 'assemblys',
+        component: resolve => require(['@/components/views/assembly/assemblys'], resolve)
+      },
+      {
+        path: '/outerChain',
+        name: 'outerChain',
+        component: resolve => require(['@/components/views/outerChain/outerChain'], resolve)
+      },
     ]
   },
   ]
