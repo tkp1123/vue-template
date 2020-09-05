@@ -58,11 +58,6 @@ const router = new Router({
         component: resolve => require(['@/components/views/reports/reports'], resolve)
       },
       {
-        path: '/err',
-        name: 'err',
-        component: resolve => require(['@/components/views/err-page/err'], resolve)
-      },
-      {
         path: '/charts',
         name: 'charts',
         component: resolve => require(['@/components/views/chart/charts'], resolve)
@@ -105,7 +100,24 @@ const router = new Router({
       {
         path: '/outerChain',
         name: 'outerChain',
-        component: resolve => require(['@/components/views/outerChain/outerChain'], resolve)
+        component: resolve => require(['@/components/views/outerChain/outerChain'], resolve),
+        children: [
+          {
+            path: 'https://www.baidu.com',
+            meta: { title: 'External Link', icon: 'link' }
+          }
+        ]
+      },
+      // {
+      //   path: '/err',
+      //   name: 'err',
+      //   component: resolve => require(['@/components/views/err-page/err'], resolve)
+      // },
+      // 下面是用来使用404页面的
+      {
+        path: '/*',
+        name: 'err',
+        component: resolve => require(['@/components/views/err-page/err'], resolve)
       },
     ]
   },
@@ -117,6 +129,10 @@ router.beforeEach(function (to, from, next) {
   //获取token
   const token = window.sessionStorage.getItem('token');
   if (!token) return next('/login');
+  if (to.path == '/outerChain') {
+    window.open('https://github.com/tkp1123/vue-template', '_blank')
+    return
+  }
   next();
 })
 export default router

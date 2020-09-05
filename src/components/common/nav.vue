@@ -10,9 +10,9 @@
       text-color="#fff"
       active-text-color="#409eff"
       unique-opened
+      :router="true"
       :collapse="getCollapse"
       :collapse-transition="false"
-      :router="true"
       :default-active="$route.path"
     >
       <template v-for="menu in menuList">
