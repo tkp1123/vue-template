@@ -115,7 +115,7 @@ const router = new Router({
       // },
       // 下面是用来使用404页面的
       {
-        path: '/*',
+        path: '*',
         name: 'err',
         component: resolve => require(['@/components/views/err-page/err'], resolve)
       },

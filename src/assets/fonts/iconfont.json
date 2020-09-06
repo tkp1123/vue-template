@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "8952924",
+      "name": "java-script",
+      "font_class": "java-script",
+      "unicode": "e810",
+      "unicode_decimal": 59408
+    },
+    {
+      "icon_id": "15214514",
+      "name": "css",
+      "font_class": "css",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "15214516",
+      "name": "c++",
+      "font_class": "c",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "15214517",
+      "name": "html",
+      "font_class": "html",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
       "icon_id": "2967034",
       "name": "操作-外链",
       "font_class": "caozuo-wailian",
