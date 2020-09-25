@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     drawLineChart(val) {
-      console.log(val)
       this.chartLine = echarts.init(document.getElementById('chartLine'))
       this.chartLine.clear()
       this.chartLine.setOption({

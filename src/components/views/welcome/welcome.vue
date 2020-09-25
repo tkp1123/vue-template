@@ -3,7 +3,23 @@
     <PanelGroup @handleClick="handleSetClick"></PanelGroup>
     <div class="frashDiv el-icon-refresh" @click="resetChart()"></div>
     <LineChart :toChildData="toChildData"></LineChart>
-    <RaddarChart></RaddarChart>
+    <el-row :gutter="32">
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <RaddarChart></RaddarChart>
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <PieChart></PieChart>
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <BarChart></BarChart>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>
@@ -11,12 +27,16 @@ import axios from 'axios'
 import PanelGroup from './components/panelGroup'
 import LineChart from './components/lineChart'
 import RaddarChart from './components/raddarChart'
+import PieChart from './components/pieChart'
+import BarChart from './components/barChart'
 export default {
   name: 'welcome',
   components: {
     PanelGroup,
     LineChart,
     RaddarChart,
+    PieChart,
+    BarChart,
   },
   data() {
     return {
@@ -141,6 +161,11 @@ export default {
     background: #fff;
     padding: 16px 16px 0;
     margin-bottom: 32px;
+  }
+}
+@media (max-width: 1024px) {
+  .chart-wrapper {
+    padding: 8px;
   }
 }
 </style>

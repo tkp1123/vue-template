@@ -55,7 +55,6 @@ export default {
     //点击
     handleSetClick(type) {
       this.$emit('handleClick', type)
-      console.log(type)
       switch (type) {
         case (type = 'apple'):
           this.appleClick()
