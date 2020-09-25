@@ -83,12 +83,6 @@
             ]
         },
         {
-            "id": "7",
-            "autoName": "404",
-            "path": "err",
-            "icon": "iconfont iconerror-"
-        },
-        {
             "id": "8",
             "autoName": "图表",
             "path": "chart",

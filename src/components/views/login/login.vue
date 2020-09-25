@@ -11,6 +11,20 @@
         <el-form-item prop="password">
           <el-input prefix-icon="iconfont iconmima" v-model="form.password" type="password"></el-input>
         </el-form-item>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item prop="verifyCode">
+              <el-input v-model="form.password" type="text"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <div class="textCenter" id="v_container"></div>
+          </el-col>
+        </el-row>
+        <!-- <el-form-item prop="verifyCode">
+          <el-input prefix-icon="iconfont iconmima" v-model="form.password" type="password"></el-input>
+          <div id="v_container"></div>
+        </el-form-item>-->
         <el-form-item class="btns">
           <el-button type="primary" @click="submitForm('form')">登 录</el-button>
           <el-button type="info" @click="resetForm('form')">重 置</el-button>
@@ -21,6 +35,7 @@
 </template>
 
 <script>
+import { GVerify } from '@/utils/verifyCode'
 export default {
   name: 'login',
   data() {
@@ -28,6 +43,7 @@ export default {
       form: {
         name: 'admin',
         password: '123456',
+        verifyCode: '',
       },
       rules: {
         name: [
@@ -59,7 +75,9 @@ export default {
       },
     }
   },
-
+  mounted() {
+    this.verifyCode = new GVerify('v_container')
+  },
   methods: {
     submitForm(form) {
       console.log(form)
@@ -106,7 +124,7 @@ export default {
 
 .login-box {
   width: 450px;
-  height: 300px;
+  height: 375px;
   background-color: #fff;
   border-radius: 3px;
   position: absolute;
@@ -146,5 +164,8 @@ export default {
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
+}
+.textCenter {
+  text-align: center;
 }
 </style>

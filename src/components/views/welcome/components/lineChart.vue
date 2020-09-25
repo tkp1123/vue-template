@@ -1,19 +1,36 @@
 <template>
   <el-row class="panel-group">
-    <div id="chartLine" style="width:100%; height:400px;"></div>
+    <div id="chartLine" style="width: 100%; height: 400px"></div>
   </el-row>
 </template>
 <script>
 import echarts from 'echarts'
 export default {
+  props: ['toChildData'],
   data() {
     return {
       chartLine: null,
+      fatherData: this.toChildData,
     }
   },
+  computed: {
+    fasData() {
+      this.chartLine = null
+      return this.toChildData
+    },
+  },
+  watch: {
+    fasData(val) {
+      this.chartLine = null
+      this.fatherData = val
+      this.drawLineChart(this.toChildData)
+    },
+  },
   methods: {
-    drawLineChart() {
+    drawLineChart(val) {
+      console.log(val)
       this.chartLine = echarts.init(document.getElementById('chartLine'))
+      this.chartLine.clear()
       this.chartLine.setOption({
         title: {
           text: 'Line Chart',
@@ -22,7 +39,7 @@ export default {
           trigger: 'axis',
         },
         legend: {
-          data: ['apple', 'pear', 'grape', 'cherry'],
+          data: val.legendData,
         },
         grid: {
           left: '3%',
@@ -38,41 +55,12 @@ export default {
         yAxis: {
           type: 'value',
         },
-        series: [
-          {
-            name: 'apple',
-            type: 'line',
-            stack: '总量',
-            color: '#40c9c6',
-            data: [120, 132, 101, 134, 90, 230, 210],
-          },
-          {
-            name: 'pear',
-            type: 'line',
-            stack: '总量',
-            color: '#36a3f7',
-            data: [220, 182, 191, 234, 290, 330, 310],
-          },
-          {
-            name: 'grape',
-            type: 'line',
-            stack: '总量',
-            color: '#f4516c',
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-          },
-          {
-            name: 'cherry',
-            type: 'line',
-            stack: '总量',
-            color: '#34bfa3',
-            data: [824, 935, 961, 938, 1230, 1310, 1120],
-          },
-        ],
+        series: val.seriesData,
       })
     },
   },
   mounted: function () {
-    this.drawLineChart()
+    this.drawLineChart(this.toChildData)
     window.addEventListener('resize', () => {
       this.chartLine.resize()
     })
@@ -82,7 +70,7 @@ export default {
 <style lang="scss" scoped>
 .panel-group {
   background: #fff;
-  padding: 16px 16px 0;
+  padding: 0 16px 16px;
   margin-bottom: 32px;
 }
 </style>

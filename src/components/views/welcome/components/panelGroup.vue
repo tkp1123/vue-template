@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="40" class="panel-group">
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="appleClick">
+      <div class="card-panel" @click="handleSetClick('apple')">
         <div class="card-panel-icon-wrapper">
           <i class="el-icon-apple"></i>
         </div>
@@ -12,7 +12,7 @@
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="pearClick">
+      <div class="card-panel" @click="handleSetClick('pear')">
         <div class="card-panel-icon-wrapper">
           <i class="el-icon-pear"></i>
         </div>
@@ -23,7 +23,7 @@
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="grapeClick">
+      <div class="card-panel" @click="handleSetClick('grape')">
         <div class="card-panel-icon-wrapper">
           <i class="el-icon-grape"></i>
         </div>
@@ -34,7 +34,7 @@
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="cherryClick">
+      <div class="card-panel" @click="handleSetClick('cherry')">
         <div class="card-panel-icon-wrapper">
           <i class="el-icon-cherry"></i>
         </div>
@@ -52,6 +52,25 @@ export default {
     return {}
   },
   methods: {
+    //点击
+    handleSetClick(type) {
+      this.$emit('handleClick', type)
+      console.log(type)
+      switch (type) {
+        case (type = 'apple'):
+          this.appleClick()
+          break
+        case (type = 'pear'):
+          this.pearClick()
+          break
+        case (type = 'grape'):
+          this.grapeClick()
+          break
+        case (type = 'cherry'):
+          this.cherryClick()
+          break
+      }
+    },
     //苹果点击
     appleClick() {
       this.$message('苹果点击')
