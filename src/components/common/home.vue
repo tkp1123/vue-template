@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     nav() {
-      return this.$store.state
+      return this.$store.state.collapse
     },
     classObj() {
       return {

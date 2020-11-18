@@ -2,8 +2,8 @@
   <!-- 头部  -->
   <div class="navbar">
     <i
-      :class="getCollapse?'el-icon-s-unfold':'el-icon-s-fold'"
-      style="padding-left:20px"
+      :class="getCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
+      style="padding-left: 20px"
       @click="pointClick"
     ></i>
     <!-- <el-button @click="loginout">退出</el-button> -->

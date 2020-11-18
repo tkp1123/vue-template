@@ -42,53 +42,35 @@ export default {
     return {
       type: '',
       toChildData: '',
-      appleData: {
-        name: 'apple',
-        type: 'line',
-        stack: '总量',
-        color: '#40c9c6',
-        data: [120, 132, 101, 134, 90, 230, 210],
-      },
-      pearData: {
-        name: 'pear',
-        type: 'line',
-        stack: '总量',
-        color: '#36a3f7',
-        data: [220, 182, 191, 234, 290, 330, 310],
-      },
-      grapeData: {
-        name: 'grape',
-        type: 'line',
-        stack: '总量',
-        color: '#f4516c',
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-      },
-      cherryData: {
-        name: 'cherry',
-        type: 'line',
-        stack: '总量',
-        color: '#34bfa3',
-        data: [824, 935, 961, 938, 1230, 1310, 1120],
-      },
-      legendData: ['apple', 'pear', 'grape', 'cherry'],
+      appleData: '',
+      pearData: '',
+      grapeData: '',
+      cherryData: '',
+      legendData: [],
     }
   },
   created() {
-    this.getList()
-    this.toChildData = {
-      seriesData: [
-        this.appleData,
-        this.pearData,
-        this.grapeData,
-        this.cherryData,
-      ],
-      legendData: this.legendData,
-    }
+    this.getData()
   },
   methods: {
-    getList() {
-      axios.post('http://www.bai.com').then((res) => {
-        console.log(res)
+    getData() {
+      axios.post('http://localhost:3000/app/chartLine').then((res) => {
+        if (res.data.code == 200) {
+          this.appleData = res.data.data.appleData
+          this.pearData = res.data.data.pearData
+          this.grapeData = res.data.data.grapeData
+          this.cherryData = res.data.data.cherryData
+          this.legendData = res.data.data.legendData
+          this.toChildData = {
+            seriesData: [
+              this.appleData,
+              this.pearData,
+              this.grapeData,
+              this.cherryData,
+            ],
+            legendData: this.legendData,
+          }
+        }
       })
     },
     handleSetClick(type) {

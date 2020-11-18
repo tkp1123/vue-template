@@ -10,7 +10,7 @@ import './assets/fonts/iconfont.css'
 import axios from 'axios'
 import { Message } from 'element-ui'
 import store from './store'
-require('../mock')
+// require('../mock')
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
@@ -22,8 +22,8 @@ Vue.prototype.$axios = axios;
 //   config.headers.Authorization = window.sessionStorage.getItem('token');
 //   return config;
 // })
-Vue.config.$http = axios
-Vue.prototype.$message = Message;
+// Vue.config.$http = axios
+// Vue.prototype.$message = Message;
 
 //.prettierrc 文件的作用是校正代码中不符合eslint 语法的问题,代码写完保存的时候,自动转换为符合的语法
 /* eslint-disable no-new */

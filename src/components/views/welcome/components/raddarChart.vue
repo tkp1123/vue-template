@@ -9,6 +9,7 @@
 </template>
 <script>
 import echarts from 'echarts'
+import axios from 'axios'
 const animationDuration = 3000
 export default {
   data() {
@@ -18,15 +19,22 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.drawRaddarChart()
+      this.getData()
     })
-    this.drawRaddarChart()
     window.addEventListener('resize', () => {
       this.chartRaddar.resize()
     })
   },
   methods: {
-    drawRaddarChart() {
+    getData() {
+      axios.post('http://localhost:3000/app/chartRaddar').then((res) => {
+        if (res.data.code == 200) {
+          var data = res.data.data
+          this.drawRaddarChart(data)
+        }
+      })
+    },
+    drawRaddarChart(data) {
       this.chartRaddar = echarts.init(document.getElementById('chartRaddar'))
       this.chartRaddar.clear()
       this.chartRaddar.setOption({
@@ -81,44 +89,7 @@ export default {
                 opacity: 1,
               },
             },
-            data: [
-              {
-                value: [5000, 7000, 12000, 11000, 15000, 14000],
-                name: 'apple',
-                itemStyle: {
-                  normal: {
-                    color: '#40c9c6',
-                  },
-                },
-              },
-              {
-                value: [4000, 9000, 15000, 15000, 13000, 11000],
-                name: 'pear',
-                itemStyle: {
-                  normal: {
-                    color: '#36a3f7',
-                  },
-                },
-              },
-              {
-                value: [5500, 11000, 12000, 15000, 12000, 12000],
-                name: 'grape',
-                itemStyle: {
-                  normal: {
-                    color: '#f4516c',
-                  },
-                },
-              },
-              {
-                value: [9000, 2000, 10000, 10000, 9000, 8000],
-                name: 'cherry',
-                itemStyle: {
-                  normal: {
-                    color: '#34bfa3',
-                  },
-                },
-              },
-            ],
+            data: data,
             animationDuration: animationDuration,
           },
         ],

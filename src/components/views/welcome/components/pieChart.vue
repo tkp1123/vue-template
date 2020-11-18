@@ -5,6 +5,7 @@
 </template>
 <script>
 import echarts from 'echarts'
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -13,15 +14,22 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.drawPieChart()
+      this.getData()
     })
-    this.drawPieChart()
     window.addEventListener('resize', () => {
       this.chartPie.resize()
     })
   },
   methods: {
-    drawPieChart() {
+    getData() {
+      axios.post('http://localhost:3000/app/chartPie').then((res) => {
+        if (res.data.code == 200) {
+          var series = res.data.data
+          this.drawPieChart(series)
+        }
+      })
+    },
+    drawPieChart(series) {
       this.chartPie = echarts.init(document.getElementById('chartPie'))
       this.chartPie.clear()
       this.chartPie.setOption({
@@ -37,55 +45,7 @@ export default {
           bottom: '10',
           data: ['apple', 'pear', 'grape', 'cherry'],
         },
-        series: [
-          {
-            name: '访问来源',
-            type: 'pie',
-            roseType: 'radius',
-            radius: [15, 95],
-            center: ['50%', '38%'],
-            data: [
-              {
-                value: 320,
-                name: 'apple',
-                itemStyle: {
-                  normal: {
-                    color: '#40c9c6',
-                  },
-                },
-              },
-              {
-                value: 240,
-                name: 'pear',
-                itemStyle: {
-                  normal: {
-                    color: '#36a3f7',
-                  },
-                },
-              },
-              {
-                value: 149,
-                name: 'grape',
-                itemStyle: {
-                  normal: {
-                    color: '#f4516c',
-                  },
-                },
-              },
-              {
-                value: 100,
-                name: 'cherry',
-                itemStyle: {
-                  normal: {
-                    color: '#34bfa3',
-                  },
-                },
-              },
-            ],
-            animationEasing: 'cubicInOut',
-            animationDuration: 2600,
-          },
-        ],
+        series: series,
       })
     },
   },

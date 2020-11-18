@@ -5,7 +5,7 @@
 </template>
 <script>
 import echarts from 'echarts'
-const animationDuration = 3000
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -14,15 +14,22 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.drawBarChart()
+      this.getData()
     })
-    this.drawBarChart()
     window.addEventListener('resize', () => {
       this.chartBar.resize()
     })
   },
   methods: {
-    drawBarChart() {
+    getData() {
+      axios.post('http://localhost:3000/app/chartBar').then((res) => {
+        if (res.data.code == 200) {
+          var series = res.data.data
+          this.drawBarChart(series)
+        }
+      })
+    },
+    drawBarChart(series) {
       this.chartBar = echarts.init(document.getElementById('chartBar'))
       this.chartBar.clear()
       this.chartBar.setOption({
@@ -55,65 +62,15 @@ export default {
         yAxis: [
           {
             type: 'value',
-            axisTick: {
+            axisLine: {
               show: false,
             },
-          },
-        ],
-        series: [
-          {
-            name: 'apple',
-            type: 'bar',
-            stack: 'vistors',
-            barWidth: '60%',
-            data: [179, 152, 500, 234, 190, 930, 1220],
-            animationDuration,
-            itemStyle: {
-              normal: {
-                color: '#40c9c6',
-              },
-            },
-          },
-          {
-            name: 'pear',
-            type: 'bar',
-            stack: 'vistors',
-            barWidth: '60%',
-            data: [180, 522, 2003, 3341, 3901, 3130, 1220],
-            animationDuration,
-            itemStyle: {
-              normal: {
-                color: '#36a3f7',
-              },
-            },
-          },
-          {
-            name: 'grape',
-            type: 'bar',
-            stack: 'vistors',
-            barWidth: '60%',
-            data: [301, 152, 2010, 3134, 3190, 1330, 1220],
-            animationDuration,
-            itemStyle: {
-              normal: {
-                color: '#f4516c',
-              },
-            },
-          },
-          {
-            name: 'cherry',
-            type: 'bar',
-            stack: 'vistors',
-            barWidth: '60%',
-            data: [130, 152, 100, 134, 190, 130, 2120],
-            animationDuration,
-            itemStyle: {
-              normal: {
-                color: '#34bfa3',
-              },
+            axisTick: {
+              show: true,
             },
           },
         ],
+        series: series,
       })
     },
   },

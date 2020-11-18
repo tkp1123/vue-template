@@ -4,12 +4,25 @@
       <div class="avatar-box">
         <img src="@/assets/logo.png" />
       </div>
-      <el-form label-width="0px" class="login_form" :model="form" :rules="rules" ref="form">
+      <el-form
+        label-width="0px"
+        class="login_form"
+        :model="form"
+        :rules="rules"
+        ref="form"
+      >
         <el-form-item prop="name">
-          <el-input prefix-icon="iconfont icongerenzhongxin" v-model="form.name"></el-input>
+          <el-input
+            prefix-icon="iconfont icongerenzhongxin"
+            v-model="form.name"
+          ></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input prefix-icon="iconfont iconmima" v-model="form.password" type="password"></el-input>
+          <el-input
+            prefix-icon="iconfont iconmima"
+            v-model="form.password"
+            type="password"
+          ></el-input>
         </el-form-item>
         <el-row>
           <el-col :span="12">
@@ -26,7 +39,9 @@
           <div id="v_container"></div>
         </el-form-item>-->
         <el-form-item class="btns">
-          <el-button type="primary" @click="submitForm('form')">登 录</el-button>
+          <el-button type="primary" @click="submitForm('form')"
+            >登 录</el-button
+          >
           <el-button type="info" @click="resetForm('form')">重 置</el-button>
         </el-form-item>
       </el-form>
@@ -36,12 +51,13 @@
 
 <script>
 import { GVerify } from '@/utils/verifyCode'
+import { getNavAPI, loginAPI } from '@/utils/api'
 export default {
   name: 'login',
   data() {
     return {
       form: {
-        name: 'admin',
+        name: '白展堂',
         password: '123456',
         verifyCode: '',
       },
@@ -80,37 +96,28 @@ export default {
   },
   methods: {
     submitForm(form) {
-      console.log(form)
-      // this.$refs[form].validate(async valid => {
-      //   if (!valid) return;
-      //   const {
-      //     data: res
-      //   } = await $http.post('login', this.form);
-      //   if (res.meta.status != '200') {
-      //     return console.log('登录失败')
-      //   } else {
-      //     console.log('登录成功')
-      //   }
-      // });
       var that = this
       this.$refs[form].validate(function (valid) {
-        console.log(valid)
         if (!valid) return that.$message.error('出错了')
-        //这里先把网络请求略过,手写一个用户信息
-        var resData = {
-          email: 'dad@qq.com',
-          id: 200,
-          mobile: '13891315170',
-          rid: '0',
-          token: '15sdsd',
-          userName: 'admin',
-        }
-        window.sessionStorage.setItem('token', resData.token)
-        that.$router.push('/home')
+        //登录
+        loginAPI(that.form).then((res) => {
+          if (res.code == 200) {
+            that.$store.commit('user/SET_TOKEN', JSON.stringify(res.data.token))
+            that.$store.commit('user/SET_USER_DATA', JSON.stringify(res.data))
+            that.getNavList()
+          }
+        })
       })
     },
     resetForm(form) {
       this.$refs[form].resetFields()
+    },
+    //获取侧边栏数据
+    getNavList() {
+      getNavAPI().then((res) => {
+        this.$store.commit('user/SET_NAVLIST', JSON.stringify(res.data))
+        this.$router.push('/home')
+      })
     },
   },
 }

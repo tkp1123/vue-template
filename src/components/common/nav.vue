@@ -16,19 +16,23 @@
       :default-active="$route.path"
     >
       <template v-for="menu in menuList">
-        <el-submenu :index="menu.id+''" v-if="menu.children" :key="menu.id">
+        <el-submenu :index="menu.id + ''" v-if="menu.children" :key="menu.id">
           <template slot="title">
             <i :class="menu.icon"></i>
-            <span>{{menu.autoName}}</span>
+            <span>{{ menu.autoName }}</span>
           </template>
-          <el-menu-item v-for="child in menu.children" :index="'/'+child.path" :key="child.id">
+          <el-menu-item
+            v-for="child in menu.children"
+            :index="'/' + child.path"
+            :key="child.id"
+          >
             <i class="el-icon-menu"></i>
-            <span>{{child.autoName}}</span>
+            <span>{{ child.autoName }}</span>
           </el-menu-item>
         </el-submenu>
-        <el-menu-item :index="'/'+menu.path" v-else :key="menu.id">
+        <el-menu-item :index="'/' + menu.path" v-else :key="menu.id">
           <i :class="menu.icon"></i>
-          <span slot="title">{{menu.autoName}}</span>
+          <span slot="title">{{ menu.autoName }}</span>
         </el-menu-item>
       </template>
     </el-menu>
@@ -41,16 +45,13 @@ export default {
   store,
   computed: {
     getCollapse() {
-      return this.$store.state.isCollapse
+      return this.$store.state.collapse.isCollapse
     },
   },
   data() {
     return {
-      menuList: [],
+      menuList: JSON.parse(this.$store.state.user.navList).menuList,
     }
-  },
-  created() {
-    this.menuList = jsonNav.menuList
   },
 }
 </script>

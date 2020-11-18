@@ -108,18 +108,18 @@ const router = new Router({
           }
         ]
       },
-      // {
-      //   path: '/err',
-      //   name: 'err',
-      //   component: resolve => require(['@/components/views/err-page/err'], resolve)
-      // },
-      // 下面是用来使用404页面的
       {
-        path: '*',
+        path: '/err',
         name: 'err',
-        component: resolve => require(['@/components/views/err-page/err'], resolve)
-      },
+        component: resolve => require(['@/components/views/err-page/err'], resolve),
+        hidden: true
+      }
     ]
+  },
+  // 下面是用来使用404页面的
+  {
+    path: '*',
+    redirect: '/err', hidden: true
   },
   ]
 })
