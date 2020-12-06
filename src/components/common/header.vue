@@ -95,8 +95,6 @@ export default {
   float: right;
 }
 .navbar {
-  // height: 50px;
-  // line-height: 50px;
   background-color: #373d41;
   display: flex;
   justify-content: space-between;
@@ -104,5 +102,6 @@ export default {
   align-items: center;
   color: #fff;
   width: 100%;
+  position: relative;
 }
 </style>

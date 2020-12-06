@@ -13,10 +13,27 @@ export default {
 </script>
 <style lang="less" scoped>
 .el-main {
-  // background-color: #eaedf1;
-  min-height: calc(100vh - 60px);
-  position: relative;
-  overflow: hidden;
+  position: absolute;
   padding: 0;
+  top: 65px;
+  width: 100%;
+  bottom: 0;
+  background-color: #fff;
+}
+.el-main::-webkit-scrollbar {
+  width: 2px;
+}
+
+/*滚动条滑块*/
+.el-main::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  background: #373d41;
+}
+
+/*滚动条轨道*/
+.el-main::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  background: #fff;
 }
 </style>
