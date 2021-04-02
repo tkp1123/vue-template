@@ -1,20 +1,21 @@
-<template>
-  <div>
-    <el-card class="box-card">
-      <div slot="header" class="clearfix">
-        <span>卡片名称</span>
-        <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
-      </div>
-    </el-card>
-  </div>
-</template>
+<template></template>
 <script>
 export default {
   name: 'orders',
   data() {
     return {}
   },
+  created() {},
+  mounted() {},
+  methods: {},
 }
 </script>
 <style lang="less" scoped>
+.el-table {
+  margin-top: 15px;
+  font-size: 14px;
+}
+.el-pagination {
+  padding-top: 20px;
+}
 </style>

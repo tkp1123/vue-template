@@ -1,153 +1,40 @@
 <template>
-  <div class="dashboard-editor-container">
-    <PanelGroup @handleClick="handleSetClick"></PanelGroup>
-    <div class="frashDiv el-icon-refresh" @click="resetChart()"></div>
-    <LineChart :toChildData="toChildData"></LineChart>
-    <el-row :gutter="32">
-      <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
-          <RaddarChart></RaddarChart>
-        </div>
-      </el-col>
-      <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
-          <PieChart></PieChart>
-        </div>
-      </el-col>
-      <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
-          <BarChart></BarChart>
-        </div>
-      </el-col>
-    </el-row>
+  <div class="app-wrapper">
+    <Admin v-if="role == '1'"></Admin>
+    <Manager v-else-if="role == '2'"></Manager>
+    <Staff v-else-if="role == '3'"></Staff>
   </div>
 </template>
 <script>
-import axios from 'axios'
-import PanelGroup from './components/panelGroup'
-import LineChart from './components/lineChart'
-import RaddarChart from './components/raddarChart'
-import PieChart from './components/pieChart'
-import BarChart from './components/barChart'
+import Admin from './template/admin'
+import Manager from './template/manager'
+import Staff from './template/staff'
 export default {
   name: 'welcome',
   components: {
-    PanelGroup,
-    LineChart,
-    RaddarChart,
-    PieChart,
-    BarChart,
+    Admin,
+    Manager,
+    Staff,
   },
   data() {
     return {
-      type: '',
-      toChildData: '',
-      appleData: '',
-      pearData: '',
-      grapeData: '',
-      cherryData: '',
-      legendData: [],
+      role: '',
     }
   },
-  created() {
-    this.getData()
+  mounted() {
+    this.getRole()
   },
   methods: {
-    getData() {
-      axios.post('http://localhost:3000/app/chartLine').then((res) => {
-        if (res.data.code == 200) {
-          this.appleData = res.data.data.appleData
-          this.pearData = res.data.data.pearData
-          this.grapeData = res.data.data.grapeData
-          this.cherryData = res.data.data.cherryData
-          this.legendData = res.data.data.legendData
-          this.toChildData = {
-            seriesData: [
-              this.appleData,
-              this.pearData,
-              this.grapeData,
-              this.cherryData,
-            ],
-            legendData: this.legendData,
-          }
-        }
-      })
-    },
-    handleSetClick(type) {
-      switch (type) {
-        case (type = 'apple'):
-          this.toChildData = {
-            seriesData: [this.appleData],
-            legendData: ['apple'],
-          }
-          break
-        case (type = 'pear'):
-          this.toChildData = {
-            seriesData: [this.pearData],
-            legendData: ['pear'],
-          }
-          break
-        case (type = 'grape'):
-          this.toChildData = {
-            seriesData: [this.grapeData],
-            legendData: ['grape'],
-          }
-          break
-        case (type = 'cherry'):
-          this.toChildData = {
-            seriesData: [this.cherryData],
-            legendData: ['cherry'],
-          }
-          break
-      }
-    },
-    resetChart() {
-      this.toChildData = {
-        seriesData: [
-          this.appleData,
-          this.pearData,
-          this.grapeData,
-          this.cherryData,
-        ],
-        legendData: this.legendData,
-      }
+    getRole() {
+      this.role = this.$store.state.user.role_id
     },
   },
 }
 </script>
-<style lang="scss" scoped>
-.dashboard-editor-container {
-  padding: 32px;
-  background-color: rgb(240, 242, 245);
-  position: relative;
-
-  .github-corner {
-    position: absolute;
-    top: 0px;
-    border: 0;
-    right: 0;
-  }
-  .frashDiv {
-    background: #fff;
-    font-size: 30px;
-    width: 100%;
-    text-align: right;
-    padding-top: 10px;
-    padding-right: 10px;
-    :hover {
-      background-color: #1d1c50;
-    }
-  }
-
-  .chart-wrapper {
-    background: #fff;
-    padding: 16px 16px 0;
-    margin-bottom: 32px;
-  }
-}
-@media (max-width: 1024px) {
-  .chart-wrapper {
-    padding: 8px;
-  }
+<style lang="less" scoped>
+.app-wrapper {
+  background-color: #fff;
+  margin: 15px;
+  border-radius: 5px;
 }
 </style>

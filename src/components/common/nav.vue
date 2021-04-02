@@ -40,7 +40,6 @@
 </template>
 <script>
 import store from '@/store'
-import jsonNav from '@/assets/json/nav.json'
 export default {
   store,
   computed: {
@@ -50,8 +49,11 @@ export default {
   },
   data() {
     return {
-      menuList: JSON.parse(this.$store.state.user.navList).menuList,
+      menuList: JSON.parse(this.$store.state.user.navList),
     }
+  },
+  mounted() {
+    console.log(JSON.parse(this.$store.state.user.navList))
   },
 }
 </script>

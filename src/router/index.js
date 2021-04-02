@@ -127,7 +127,7 @@ const router = new Router({
 router.beforeEach(function (to, from, next) {
   if (to.path == '/login') return next();
   //获取token
-  const token = window.sessionStorage.getItem('token');
+  const token = window.localStorage.getItem('token');
   if (!token) return next('/login');
   if (to.path == '/outerChain') {
     window.open('https://github.com/tkp1123/vue-template', '_blank')

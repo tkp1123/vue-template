@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "15463268",
+      "name": "统计",
+      "font_class": "tongji",
+      "unicode": "e6c5",
+      "unicode_decimal": 59077
+    },
+    {
+      "icon_id": "4736293",
+      "name": "导出",
+      "font_class": "daochu",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "15779644",
+      "name": "打印",
+      "font_class": "dayin",
+      "unicode": "e6fc",
+      "unicode_decimal": 59132
+    },
+    {
+      "icon_id": "1469259",
+      "name": "message",
+      "font_class": "message",
+      "unicode": "e865",
+      "unicode_decimal": 59493
+    },
+    {
+      "icon_id": "712259",
+      "name": "快捷入口",
+      "font_class": "icon-shortcut",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "15643715",
+      "name": "报表",
+      "font_class": "baobiao",
+      "unicode": "e6a9",
+      "unicode_decimal": 59049
+    },
+    {
+      "icon_id": "15919411",
+      "name": "公告",
+      "font_class": "gonggao",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "16398946",
+      "name": "版本",
+      "font_class": "banben",
+      "unicode": "e850",
+      "unicode_decimal": 59472
+    },
+    {
       "icon_id": "8952924",
       "name": "java-script",
       "font_class": "java-script",

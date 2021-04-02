@@ -46,7 +46,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning',
       }).then(function () {
-        window.sessionStorage.clear()
+        window.localStorage.clear()
         that.$router.push('/login')
         that.$message({
           type: 'success',

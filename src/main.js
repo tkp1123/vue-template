@@ -19,7 +19,7 @@ Vue.prototype.$axios = axios;
 // axios.defaults.baseURI = ''
 // axios.interceptors.request.use(function (config) {
 //   console.log(config);
-//   config.headers.Authorization = window.sessionStorage.getItem('token');
+//   config.headers.Authorization = window.localStorage.getItem('token');
 //   return config;
 // })
 // Vue.config.$http = axios

@@ -1,13 +1,21 @@
-<template>
-  <h1>charts</h1>
-</template>
+<template></template>
 <script>
 export default {
   name: 'charts',
   data() {
     return {}
   },
+  created() {},
+  mounted() {},
+  methods: {},
 }
 </script>
 <style lang="less" scoped>
+.el-table {
+  margin-top: 15px;
+  font-size: 14px;
+}
+.el-pagination {
+  padding-top: 20px;
+}
 </style>

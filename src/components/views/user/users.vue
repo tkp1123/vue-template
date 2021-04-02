@@ -3,8 +3,17 @@
     <el-card class="box-card">
       <el-row :gutter="30">
         <el-col :span="7">
-          <el-input v-model="queryInfo" clearable placeholder="请输入内容" @clear="queryList()">
-            <el-button slot="append" icon="el-icon-search" @click="queryList()"></el-button>
+          <el-input
+            v-model="queryInfo"
+            clearable
+            placeholder="请输入姓名"
+            @clear="queryList()"
+          >
+            <el-button
+              slot="append"
+              icon="el-icon-search"
+              @click="queryList()"
+            ></el-button>
           </el-input>
         </el-col>
         <el-col :span="4">
@@ -16,24 +25,39 @@
           <!-- <el-table-column type="index"></el-table-column> -->
           <el-table-column prop="name" label="姓名"></el-table-column>
           <el-table-column prop="email" label="邮箱"></el-table-column>
-          <el-table-column prop="phone" label="手机号"></el-table-column>
+          <el-table-column prop="mobile" label="手机号"></el-table-column>
           <el-table-column prop="address" label="地址"></el-table-column>
           <el-table-column label="状态">
             <template slot-scope="scope">
-              <el-switch v-model="scope.row.state" @change="userStateChange(scope.row)"></el-switch>
+              {{ scope.row.status == '1' ? '激活' : '封存' }}
             </template>
           </el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
-              <el-tooltip effect="dark" content="编辑" placement="top" :enterable="false">
-                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              <el-tooltip
+                effect="dark"
+                content="编辑"
+                placement="top"
+                :enterable="false"
+              >
+                <el-button
+                  size="mini"
+                  @click="handleEdit(scope.$index, scope.row)"
+                  >编辑</el-button
+                >
               </el-tooltip>
-              <el-tooltip effect="dark" content="删除" placement="top" :enterable="false">
+              <el-tooltip
+                effect="dark"
+                content="删除"
+                placement="top"
+                :enterable="false"
+              >
                 <el-button
                   size="mini"
                   type="danger"
                   @click="handleDelete(scope.$index, scope.row)"
-                >删除</el-button>
+                  >删除</el-button
+                >
               </el-tooltip>
             </template>
           </el-table-column>
@@ -42,29 +66,37 @@
           <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
-            :current-page="currentPage4"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size="100"
+            :current-page="currentPage"
+            :page-sizes="[10, 20, 30]"
+            :page-size="pageSize"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="400"
+            :total="total"
           ></el-pagination>
         </el-row>
       </el-row>
     </el-card>
     <!-- dialog对话框    添加用户-->
-    <el-dialog title="添加用户" :visible.sync="dialogVisible" width="50%">
-      <el-form ref="form" :model="form" label-width="80px" :rules="rules">
-        <el-form-item label="用户名" prop="name">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input v-model="form.password" type="password"></el-input>
+    <el-dialog
+      title="添加用户"
+      :visible.sync="dialogVisible"
+      width="50%"
+      destroy-on-close
+    >
+      <el-form :model="form" label-width="80px" :rules="rules">
+        <el-form-item label="姓名" prop="name">
+          <el-input v-model="form.name" type="text"></el-input>
         </el-form-item>
         <el-form-item label="邮箱" prop="email">
           <el-input v-model="form.email" type="email"></el-input>
         </el-form-item>
-        <el-form-item label="手机" prop="phone">
-          <el-input v-model="form.phone" type="phone"></el-input>
+        <el-form-item label="手机号" prop="mobile">
+          <el-input v-model="form.mobile" type="phone"></el-input>
+        </el-form-item>
+        <el-form-item label="地址" prop="address">
+          <el-input v-model="form.address" type="text"></el-input>
+        </el-form-item>
+        <el-form-item label="状态">
+          <el-switch v-model="form.status"></el-switch>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -73,16 +105,27 @@
       </span>
     </el-dialog>
     <!-- dialog对话框     修改用户-->
-    <el-dialog title="修改用户" :visible.sync="editDialogVisible" width="50%">
-      <el-form ref="formEdit" :model="formEdit" label-width="80px" :rules="rulesEdit">
-        <el-form-item label="用户名" prop="name">
+    <el-dialog
+      title="修改用户"
+      :visible.sync="editDialogVisible"
+      width="50%"
+      destroy-on-close
+    >
+      <el-form :model="formEdit" label-width="80px" :rules="rulesEdit">
+        <el-form-item label="姓名" prop="name">
           <el-input v-model="formEdit.name" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="邮箱" prop="email">
           <el-input v-model="formEdit.email" type="email"></el-input>
         </el-form-item>
-        <el-form-item label="手机" prop="phone">
-          <el-input v-model="formEdit.phone" type="phone"></el-input>
+        <el-form-item label="手机号" prop="mobile">
+          <el-input v-model="formEdit.mobile" type="phone"></el-input>
+        </el-form-item>
+        <el-form-item label="地址" prop="address">
+          <el-input v-model="formEdit.address" type="text"></el-input>
+        </el-form-item>
+        <el-form-item label="状态">
+          <el-switch v-model="formEdit.status"></el-switch>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -93,6 +136,12 @@
   </div>
 </template>
 <script>
+import {
+  selectCustomAPI,
+  insertCustomAPI,
+  deleteCustomAPI,
+  updateCustomAPI,
+} from '@/utils/api'
 export default {
   name: 'users',
   data() {
@@ -113,86 +162,50 @@ export default {
       }
     }
     return {
-      tableData: [
-        {
-          date: '2016-05-02',
-          name: '王小虎1',
-          id: '1',
-          email: '1551@qq.com',
-          phone: '13888888888',
-          address: '上海市普陀区金沙江路 1518 弄',
-          state: true,
-        },
-        {
-          date: '2016-05-04',
-          name: '王小虎2',
-          id: '2',
-          email: '1552@qq.com',
-          phone: '13888888888',
-          address: '上海市普陀区金沙江路 1517 弄',
-          state: false,
-        },
-        {
-          date: '2016-05-01',
-          name: '王小虎3',
-          id: '3',
-          email: '1553@qq.com',
-          phone: '13888888888',
-          address: '上海市普陀区金沙江路 1519 弄',
-          state: true,
-        },
-        {
-          date: '2016-05-03',
-          name: '王小虎4',
-          id: '4',
-          email: '1554@qq.com',
-          phone: '13888888888',
-          address: '上海市普陀区金沙江路 1516 弄',
-          state: false,
-        },
-      ],
-      currentPage1: 5,
-      currentPage2: 5,
-      currentPage3: 5,
-      currentPage4: 4,
+      tableData: [],
+      total: 0,
+      currentPage: 1,
+      pageSize: 10,
       queryInfo: '',
       dialogVisible: false,
       editDialogVisible: false,
       form: {
         name: '',
-        password: '',
+        address: '',
         email: '',
-        phone: '',
+        mobile: '',
+        status: false,
       },
       formEdit: {
         name: '',
         email: '',
-        phone: '',
+        mobile: '',
+        address: '',
+        status: false,
       },
       rules: {
         name: [
           {
             required: true,
-            message: '请输入用户名',
+            message: '请输入姓名',
+            trigger: 'blur',
+          },
+          {
+            min: 2,
+            max: 5,
+            message: '长度在 2 到 5 个字符',
+            trigger: 'blur',
+          },
+        ],
+        address: [
+          {
+            required: true,
+            message: '请输入地址',
             trigger: 'blur',
           },
           {
             min: 3,
-            max: 5,
-            message: '长度在 3 到 5 个字符',
-            trigger: 'blur',
-          },
-        ],
-        password: [
-          {
-            required: true,
-            message: '请输入密码',
-            trigger: 'blur',
-          },
-          {
-            min: 6,
-            max: 15,
-            message: '长度在 6 到 15 个字符',
+            message: '最低3个字符',
             trigger: 'blur',
           },
         ],
@@ -207,7 +220,7 @@ export default {
             trigger: 'blur',
           },
         ],
-        phone: [
+        mobile: [
           {
             required: true,
             message: '请输入手机号码',
@@ -223,7 +236,7 @@ export default {
         name: [
           {
             required: true,
-            message: '请输入用户名',
+            message: '请输入姓名',
             trigger: 'blur',
           },
           {
@@ -244,7 +257,7 @@ export default {
             trigger: 'blur',
           },
         ],
-        phone: [
+        mobile: [
           {
             required: true,
             message: '请输入手机号码',
@@ -255,19 +268,136 @@ export default {
             trigger: 'blur',
           },
         ],
+        address: [
+          {
+            required: true,
+            message: '请输入地址',
+            trigger: 'blur',
+          },
+          {
+            min: 3,
+            message: '最低3个字符',
+            trigger: 'blur',
+          },
+        ],
       },
     }
   },
   created() {},
+  mounted() {
+    this.queryList()
+  },
   methods: {
+    //添加用户确定
+    dialogOk() {
+      if (
+        this.form.name == '' ||
+        this.form.email == '' ||
+        this.form.mobile == '' ||
+        this.form.address == ''
+      ) {
+        this.$message({
+          type: 'error',
+          message: '所有字段为必填',
+        })
+        return
+      }
+      let status = '1'
+      if (this.form.status == false) {
+        status = '0'
+      } else {
+        status = '1'
+      }
+      let params = {
+        name: this.form.name,
+        email: this.form.email,
+        mobile: this.form.mobile,
+        address: this.form.address,
+        status: status,
+      }
+      insertCustomAPI(params).then((res) => {
+        console.log(res)
+        if (res.code == '200') {
+          this.$message({
+            type: 'success',
+            message: res.msg,
+          })
+          this.dialogDataReset()
+          this.queryList()
+        }
+      })
+    },
+    //添加用户关闭dialog 和重置dialog数据
+    dialogDataReset() {
+      this.form.name = ''
+      this.form.email = ''
+      this.form.mobile = ''
+      this.form.address = ''
+      this.form.status = false
+      this.dialogVisible = false
+    },
+    //编辑用户取消
+    editCancel() {
+      this.editDialogVisible = false
+    },
+    //编辑用户确定
+    editOk() {
+      console.log(this.formEdit)
+      if (
+        this.formEdit.name == '' ||
+        this.formEdit.email == '' ||
+        this.formEdit.mobile == '' ||
+        this.formEdit.address == ''
+      ) {
+        this.$message({
+          type: 'error',
+          message: '所有字段为必填',
+        })
+        return
+      }
+      let status = '1'
+      if (this.formEdit.status == false) {
+        status = '0'
+      } else {
+        status = '1'
+      }
+      let params = {
+        name: this.formEdit.name,
+        email: this.formEdit.email,
+        mobile: this.formEdit.mobile,
+        address: this.formEdit.address,
+        status: status,
+        id: this.formEdit.id,
+      }
+      updateCustomAPI(params).then((res) => {
+        console.log(res)
+        if (res.code == '200') {
+          this.$message({
+            type: 'success',
+            message: res.msg,
+          })
+          this.editCancel()
+          this.queryList()
+        }
+      })
+    },
     //编辑用户打开dialog
     handleEdit(index, row) {
       //注意,这里正常的应该是根据row.id 调用接口去获取对应的用户信息,
       //这里用的是写死的数据
+      if (row.status == '1') {
+      }
       this.editDialogVisible = true
       this.formEdit.name = row.name
       this.formEdit.email = row.email
-      this.formEdit.phone = row.phone
+      this.formEdit.mobile = row.mobile
+      this.formEdit.address = row.address
+      this.formEdit.id = row.id
+      if (row.status == '1') {
+        this.formEdit.status = true
+      } else {
+        this.formEdit.status = false
+      }
     },
     handleDelete(index, row) {
       var that = this
@@ -276,76 +406,49 @@ export default {
         cancelButtonText: '取消',
         type: 'warning',
       }).then(function () {
-        that.$message({
-          type: 'success',
-          message: '好的!',
+        console.log(row)
+        deleteCustomAPI({ id: row.id, name: row.name }).then((res) => {
+          console.log(res)
+          if (res.code == '200') {
+            that.$message({
+              type: 'success',
+              message: res.msg,
+            })
+          }
+          that.queryList()
         })
       })
     },
     handleSizeChange(val) {
+      this.pageSize = val
       console.log(`每页 ${val} 条`)
+      this.currentPage = 1
+      this.selectCustom()
     },
     handleCurrentChange(val) {
+      this.currentPage = val
       console.log(`当前页: ${val}`)
-    },
-    userStateChange(row) {
-      console.log(row)
-      //这里监听行状态变化,可以调用接口修改状态
-      //改变完状态应该重新拉取数据
+      this.selectCustom()
     },
     queryList() {
-      //搜索功能,查询接口form列表 ,还有一个清空输入框数据,再拉取接口数据
-      console.log('搜索')
+      this.selectCustom()
     },
     //添加用户打开dialog
     addUser() {
       this.dialogVisible = true
     },
-    //添加用户确定
-    dialogOk() {
-      var that = this
-      this.$refs.form.validate(function (valid) {
-        console.log(valid)
-        if (valid) {
-          //这里表示校验成功,提交数据,关闭dialog,还需要刷新列表form
-          that.$message.success('成功了')
-          //成功了以后还需要重置dialog内已填入的数据
-          //注意这里还需要区分,接口数据返回成功还是失败,成功关闭dialig并且
-          //重置数据,不成功不能重置和关闭dialog,并且弹出提示
-          that.dialogVisible = false
-          that.$refs.form.resetFields()
-        } else {
-          //这里表示校验失败,需要提示
-          that.$message.error('出错了')
-        }
-      })
-    },
-    //添加用户关闭dialog 和重置dialog数据
-    dialogDataReset() {
-      this.dialogVisible = false
-      this.$refs.form.resetFields()
-    },
-    //编辑用户取消
-    editCancel() {
-      this.editDialogVisible = false
-      this.$refs.formEdit.resetFields()
-    },
-    //编辑用户确定
-    editOk() {
-      var that = this
-      this.$refs.formEdit.validate(function (valid) {
-        console.log(valid)
-        if (valid) {
-          //这里表示校验成功,提交数据,关闭dialog,还需要刷新列表form
-          that.$message.success('成功了')
-          //成功了以后还需要重置dialog内已填入的数据
-          //注意这里还需要区分,接口数据返回成功还是失败,成功关闭dialig并且
-          //重置数据,不成功不能重置和关闭dialog,并且弹出提示
-          that.editDialogVisible = false
-          that.$refs.formEdit.resetFields()
-        } else {
-          //这里表示校验失败,需要提示
-          that.$message.error('出错了')
+    selectCustom() {
+      let that = this
+      let data = {
+        name: this.queryInfo,
+        offset: this.currentPage,
+        size: this.pageSize,
+      }
+      selectCustomAPI(data).then((res) => {
+        console.log(res)
+        if (res.code == '200') {
+          that.tableData = res.data.data
+          that.total = res.data.total
         }
       })
     },

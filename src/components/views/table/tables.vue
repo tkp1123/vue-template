@@ -3,8 +3,17 @@
     <el-card class="box-card">
       <el-row :gutter="30">
         <el-col :span="7">
-          <el-input v-model="queryInfo" clearable placeholder="请输入内容" @clear="queryList()">
-            <el-button slot="append" icon="el-icon-search" @click="queryList()"></el-button>
+          <el-input
+            v-model="queryInfo"
+            clearable
+            placeholder="请输入内容"
+            @clear="queryList()"
+          >
+            <el-button
+              slot="append"
+              icon="el-icon-search"
+              @click="queryList()"
+            ></el-button>
           </el-input>
         </el-col>
         <el-col :span="4">
@@ -20,20 +29,38 @@
           <el-table-column prop="address" label="地址"></el-table-column>
           <el-table-column label="状态">
             <template slot-scope="scope">
-              <el-switch v-model="scope.row.state" @change="userStateChange(scope.row)"></el-switch>
+              <el-switch
+                v-model="scope.row.state"
+                @change="userStateChange(scope.row)"
+              ></el-switch>
             </template>
           </el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
-              <el-tooltip effect="dark" content="编辑" placement="top" :enterable="false">
-                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              <el-tooltip
+                effect="dark"
+                content="编辑"
+                placement="top"
+                :enterable="false"
+              >
+                <el-button
+                  size="mini"
+                  @click="handleEdit(scope.$index, scope.row)"
+                  >编辑</el-button
+                >
               </el-tooltip>
-              <el-tooltip effect="dark" content="删除" placement="top" :enterable="false">
+              <el-tooltip
+                effect="dark"
+                content="删除"
+                placement="top"
+                :enterable="false"
+              >
                 <el-button
                   size="mini"
                   type="danger"
                   @click="handleDelete(scope.$index, scope.row)"
-                >删除</el-button>
+                  >删除</el-button
+                >
               </el-tooltip>
             </template>
           </el-table-column>
@@ -74,7 +101,12 @@
     </el-dialog>
     <!-- dialog对话框     修改用户-->
     <el-dialog title="修改用户" :visible.sync="editDialogVisible" width="50%">
-      <el-form ref="formEdit" :model="formEdit" label-width="80px" :rules="rulesEdit">
+      <el-form
+        ref="formEdit"
+        :model="formEdit"
+        label-width="80px"
+        :rules="rulesEdit"
+      >
         <el-form-item label="用户名" prop="name">
           <el-input v-model="formEdit.name" :disabled="true"></el-input>
         </el-form-item>
